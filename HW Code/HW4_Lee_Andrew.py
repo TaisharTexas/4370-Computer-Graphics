@@ -497,14 +497,6 @@ def main():
                 elif event.key == pygame.K_5:
                     keyPressed = 5
                     print("Switched to d20")
-                # elif event.key == pygame.K_DOWN:
-                #     if viewAngleH < 45:
-                #         viewAngleH += 2
-                #         print("viewAngleH:" + str(viewAngleH))
-                # elif event.key == pygame.K_UP:
-                #     if viewAngleH > -45:
-                #         viewAngleH -= 2
-                #         print("viewAngleH:" + str(viewAngleH))
 
         # init model view matrix
         glLoadIdentity()
@@ -534,6 +526,7 @@ def main():
             d20(textures)
 
         glPopMatrix()
+        glDisable(GL_TEXTURE_2D)
 
         # Draw the ground quad
         glColor4f(0.65, 0.65, 0.65, 0)
@@ -544,6 +537,8 @@ def main():
         glVertex3f(10, 10, -2)
         glVertex3f(-10, 10, -2)
         glEnd()
+
+        glEnable(GL_TEXTURE_2D)
 
         pygame.display.flip()
         pygame.time.wait(30)
