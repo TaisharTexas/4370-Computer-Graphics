@@ -439,7 +439,7 @@ def d20(textures):
     glEnd()
 
     glEnable(GL_TEXTURE_2D)
-    glColor3f(1, 1, 1)
+    # glColor3f(1, 1, 1)
 
 def main():
     pygame.init()
@@ -522,7 +522,6 @@ def main():
         angle = (angle + 1) % 360
         glRotatef(angle, 0, 0, 1)  # Rotate around the box's vertical axis
 
-
         if keyPressed == 1:
             d4(textures)
         elif keyPressed == 2:
@@ -534,16 +533,17 @@ def main():
         elif keyPressed == 5:
             d20(textures)
 
+        glPopMatrix()
+
         # Draw the ground quad
-        glColor4f(0.5, 0.5, 0.5, 1)
+        glColor4f(0.65, 0.65, 0.65, 0)
         glBegin(GL_QUADS)
+
         glVertex3f(-10, -10, -2)
         glVertex3f(10, -10, -2)
         glVertex3f(10, 10, -2)
         glVertex3f(-10, 10, -2)
         glEnd()
-
-        glPopMatrix()
 
         pygame.display.flip()
         pygame.time.wait(30)

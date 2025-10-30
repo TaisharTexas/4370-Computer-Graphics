@@ -11,7 +11,7 @@ def create_individual_number_textures():
     """Create 20 separate image files, one for each number"""
     
     # Image size for each number
-    img_size = 512  # 512x512 pixels per number
+    img_size = 1024  # 512x512 pixels per number
     
     # Try to use a nice font, fallback to default if not available
     try:
@@ -42,7 +42,7 @@ def create_individual_number_textures():
         draw = ImageDraw.Draw(img)
         
         # Choose a background color (light color for contrast)
-        bg_color = (240, 240, 255, 255)  # Light blue
+        bg_color = (162, 73, 235, 255)
         draw.rectangle([0, 0, img_size, img_size], fill=bg_color)
         
         # Draw the number centered
@@ -54,7 +54,7 @@ def create_individual_number_textures():
         text_y = (img_size - text_height) // 2
         
         # Draw black text
-        draw.text((text_x, text_y), text, fill=(0, 0, 0, 255), font=font)
+        draw.text((text_x, text_y), text, fill=(255, 255, 255, 255), font=font)
         
         # Save the image
         filename = f"{output_dir}/{number}.png"
