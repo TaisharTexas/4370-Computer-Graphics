@@ -1,36 +1,5 @@
 """
-Overview:
-- Building on our work from the first two assignments, we would like to be able to texture objects using triangles and/or
-quads. To demonstrate these ideas, we will be drawing on the concepts of constructing shapes from the first assignment
-and the surfaces and transforms from the second. We will create a set of textured polyhedrons in the form of dice.
-We will place number textures so that each face receives a different number.
-
-Specifications:
-- Starting with the code from previous assignments, generate the 4-, 6-, 8-, 12-, and 20-sided textured figures using
-triangles or quads as appropriate. You are given as and example, a cube (companion cube) with the same texture applied
-to each face. Modify it to be a 6-sided dice by adding a unique number from 1-6 to each face of the cube to practice the
-concepts needed for the more complex problem. Then, proceed to the main problem of constructing the remaining solids
-with dice faces.
-
-- You may construct these regular polyhedrons in an color you wish. Create and modify the texture and texture mapping so
-that each face has a unique value. Use the existing perspective camera and rotational motion to show off the faces of
-your dodecahedron. Ensure that you can switch between the shapes with a number press.
-
-Deliverables:
-- Submit a single python file and any texture files of any appropriate type to Canvas, including the required specifications.
-- The program should display the colored platonic solids,  Tetrahedron, Cube, Octahedron, Dodecahedron and Icosahedron.
-- Provide a mechanism to change the shape displayed with a numerical keypress (1-5).
-- Each face on each shape should hold a different number, with opposite faces summing up to n+1, where n is the number of
-sides on the polyhedron.
-- You may use any color for the faces. Selecting a contrasting color for the numbers to improve visibility.
-- You may position the numbers in any orientation and use any arrangement of numbers on the faces that you wish as long
-as you include all the numbers for each polyhedron.
-
-Notes:
-- Be sure to select a reasonable size for your object (the values you found for vertices should work well.
-- Use the code you developed for the first Homework and the starter code to complete this problem.
-- Be sure to sure to start this program early as there are many small details.
-- There are many free options for image editor to select.
+Andrew's Submission for HW4
 """
 
 import pygame
@@ -471,7 +440,7 @@ def main():
     angle = 0  # Rotation angle about the vertical axis
     glColor(1, 1, 1, 1)
 
-    keyPressed = 5
+    keyPressed = 1
     viewAngleH = 0
 
 
