@@ -32,10 +32,10 @@ WALL_THICKNESS = 0.2  # Thickness of walls
 # Player settings
 PLAYER_HEIGHT = 0.5
 PLAYER_SPEED = 5.0
-MOUSE_SENSITIVITY = 0.002
+MOUSE_SENSITIVITY = 0.0006
 
 # Camera settings
-CAMERA_DISTANCE = 10.0  # Distance behind/above player
+CAMERA_DISTANCE = 8.0  # Distance behind/above player
 CAMERA_HEIGHT = 8.0
 CAMERA_ANGLE = 45.0  # Degrees looking down
 
@@ -53,6 +53,7 @@ class RoomType:
     SPEED = 5
     SPINNER = 6
     LAUNCHER = 7
+    DEADEND = 8
     
     @staticmethod
     def get_color(room_type):
@@ -66,6 +67,7 @@ class RoomType:
             RoomType.SPEED: (0.3, 0.5, 1.0),       # Bright blue
             RoomType.SPINNER: (1.0, 0.7, 0.3),     # Orange
             RoomType.LAUNCHER: (0.8, 0.3, 1.0),    # Purple/magenta
+            RoomType.DEADEND: (1.0, 0.2, 0.2),     # Bright red (danger)
         }
         return colors.get(room_type, (0.9, 0.9, 0.9))
     
@@ -81,9 +83,24 @@ class RoomType:
             RoomType.SPEED: "Speed Boost",
             RoomType.SPINNER: "Spinner",
             RoomType.LAUNCHER: "Launcher",
+            RoomType.DEADEND: "DEADEND"
         }
         return names.get(room_type, "Unknown")
 
+    @staticmethod
+    def get_descrip(room_type):
+        descrips = {
+            RoomType.NORMAL: "Standard Grid",
+            RoomType.START: "Starting grid for maze",
+            RoomType.END: "End grid for maze",
+            RoomType.SLOW: "Slows movespeed while in grid",
+            RoomType.TRAP: "Resets player to start of maze",
+            RoomType.SPEED: "Increases movespeed while in grid",
+            RoomType.SPINNER: "Spinner (randomizes view angle)",
+            RoomType.LAUNCHER: "Launcher (launches you in the air)",
+            RoomType.DEADEND: "You've hit a deadend, the best possible path through the maze is highlighted",
+        }
+        return descrips.get(room_type, "Unknown")
 # ============================================================================
 # CELL CLASS
 # ============================================================================
@@ -388,9 +405,9 @@ class Player:
         # Apply room effects (only once per entry)
         if cell.effect_active:
             if cell.room_type == RoomType.SLOW:
-                self.speed = self.base_speed * 0.5
+                self.speed = self.base_speed * 0.35
             elif cell.room_type == RoomType.SPEED:
-                self.speed = self.base_speed * 1.5
+                self.speed = self.base_speed * 2.0
             elif cell.room_type == RoomType.SPINNER:
                 self.angle += math.pi / 2  # Turn 90 degrees
                 cell.effect_active = False  # Only spin once
@@ -714,6 +731,7 @@ def render_hud(screen, player, maze, elapsed_time):
     cell_x = int(player.x / CELL_SIZE)
     cell_z = int(player.z / CELL_SIZE)
     pos_text = f"Position: ({cell_x}, {cell_z})"
+
     
     # Render text
     time_surface = font.render(time_text, True, (255, 255, 255))
@@ -882,16 +900,25 @@ class Game:
             room_text = f"Room: {room_name}"
         else:
             room_text = "Room: Unknown"
+
+        # Description
+        if current_cell:
+            room_descrip = RoomType.get_descrip(current_cell.room_type)
+            room_effect = f"Description: {room_descrip}"
+        else:
+            room_effect = "Description: Unknown"
         
         # Create text surfaces
         time_surface = self.font.render(time_text, True, (255, 255, 255))
         pos_surface = self.font.render(pos_text, True, (255, 255, 255))
         room_surface = self.font.render(room_text, True, (255, 255, 255))
+        room_descrip = self.font.render(room_effect, True, (255, 255, 255))
         
         # Convert to OpenGL textures and render
         self.render_text_texture(time_surface, 10, 10)
         self.render_text_texture(pos_surface, 10, 50)
         self.render_text_texture(room_surface, 10, 90)
+        self.render_text_texture(room_descrip, 10, 130)
         
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_LIGHTING)
