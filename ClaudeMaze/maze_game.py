@@ -1178,6 +1178,16 @@ class Game:
         else:
             room_effect = "Description: Unknown"
 
+        # Controls
+        controls_text = [
+            "Controls:",
+            "- WASD: Move through maze",
+            "- Mouse: Look around",
+            "- R: Reset player to start",
+            "- G: Generate new maze",
+            "- ESC: Exit"
+        ]
+
         # Create text surfaces
         time_surface = self.font.render(time_text, True, (255, 255, 255))
         pos_surface = self.font.render(pos_text, True, (255, 255, 255))
@@ -1189,6 +1199,13 @@ class Game:
         self.render_text_texture(pos_surface, 10, 50)
         self.render_text_texture(room_surface, 10, 90)
         self.render_text_texture(room_descrip, 10, 130)
+
+        control_surfaces = [self.font.render(line, True, (255, 255, 255)) for line in controls_text]
+
+        y_offset = 180
+        for control_surface in control_surfaces:
+            self.render_text_texture(control_surface, 10, y_offset)
+            y_offset += 40
 
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_LIGHTING)
