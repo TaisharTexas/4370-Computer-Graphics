@@ -1,6 +1,6 @@
 """
 Interactive 3D Maze Game
-COSC 4370 Computer Graphics Final Project
+COSC 4370 Computer Graphics HW5
 
 Controls:
 - WASD: Move through maze
@@ -61,7 +61,6 @@ WALL_THICKNESS = 0.2  # Thickness of walls
 # Texture settings
 WALL_TEXTURE_SCALE_U = 0.5  # Horizontal texture repeat factor (higher = more repeats)
 WALL_TEXTURE_SCALE_V = 0.5  # Vertical texture repeat factor (higher = more repeats)
-
 FLOOR_TEXTURE_SCALE_U = 1.0
 FLOOR_TEXTURE_SCALE_V = 1.0
 
