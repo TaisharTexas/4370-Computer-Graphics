@@ -1,0 +1,15 @@
+HW5 - Max Gibson - COSC 4370
+WARNING - this game features a moderately loud jump-scare sound effect that plays when you activate a certain trap.
+For those who may be interested, I designed the music for this game (besides the jumpscare sound effect) using FL Studio 2024. I wanted an ominous and 'trippy' vibe for the background music to match the visuals and I designed a win sound effect as well. The background music features a male vocal choir, crows, toms, a kick drum, a distorted fluttering trumpet, and a sin-wave synth. The win sound effect uses an organ, strings, and brass instruments and follows the very traditional "win" chord progression of bVI, bVII, I. 
+
+POWERUPS:
+There is a speed-boost powerup in the shape of a green diamond that makes you run and jump faster.
+There is also a jump boost in the shape of a blue diamond. This allows you to see high over the maze walls and plan a route towards the end. There will be a yellow diamond hovering above where the end is.
+
+TRAPS:
+Traps can be avoided by jumping over them.
+There is a swirl debuff that is orange and turns the character around 360 degrees.
+A slow, tar-looking debuff will slow the character down for 5.5 seconds and disable jumping.
+There is a dead-end trap that has a 70% chance of spawning at a dead end. It is visualized by a mask picture from the Zelda game Majoras Mask (a favorite of mine). This will send the player back to the beginning of the maze and play a jump scare sound effect.
+
+There is a self-explanatory keybind guide that is shown on the screen at all times, as well as the player's position and time elapsed.
